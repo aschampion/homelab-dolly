@@ -35,7 +35,7 @@ tools:
 		--network host \
 		--env "KUBECONFIG=${KUBECONFIG}" \
 		--volume "/var/run/docker.sock:/var/run/docker.sock" \
-		--volume $(shell pwd):$(shell pwd) \
+		--volume $(shell pwd):$(shell pwd):Z \
 		--volume ${HOME}/.ssh:/root/.ssh \
 		--volume ${HOME}/.terraform.d:/root/.terraform.d \
 		--volume homelab-tools-cache:/root/.cache \
