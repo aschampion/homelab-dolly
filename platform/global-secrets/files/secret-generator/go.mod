@@ -1,4 +1,4 @@
-module git.champion.casa/khuedoan/homelab/platform/secret-generator
+module git.champion.casa/aschampion/homelab/platform/secret-generator
 
 go 1.19
 

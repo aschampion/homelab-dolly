@@ -1,4 +1,4 @@
-module git.khuedoan.com/khuedoan/homelab/gitea/config
+module git.champion.casa/aschampion/homelab/gitea/config
 
 go 1.19
 
