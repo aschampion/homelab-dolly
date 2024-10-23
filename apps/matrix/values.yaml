@@ -23,16 +23,16 @@ elementweb:
 dendrite:
   dendrite_config:
     global:
-      server_name: matrix.khuedoan.com
+      server_name: matrix.champion.casa
   ingress:
     enabled: true
     className: nginx
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
-    hostName: matrix.khuedoan.com
+    hostName: matrix.champion.casa
     tls:
       - hosts:
-          - matrix.khuedoan.com
+          - matrix.champion.casa
         secretName: matrix-tls-certificate
   postgresql:
     enabled: true
