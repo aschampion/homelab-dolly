@@ -1,9 +1,7 @@
-# https://dash.cloudflare.com/profile
-cloudflare_email = "myaccount@example.com"
 # https://developers.cloudflare.com/fundamentals/setup/find-account-and-zone-ids
 cloudflare_account_id = "foobarid"
 # https://dash.cloudflare.com/profile/api-tokens
-cloudflare_api_key = "foobarkey"
+cloudflare_api_token = "foobarkey"
 
 ntfy = {
   # https://ntfy.sh or your own instance
