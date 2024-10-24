@@ -7,7 +7,7 @@ rook-ceph-cluster:
     createPrometheusRules: true
   cephClusterSpec:
     mon:
-      count: 2
+      count: 3
     mgr:
       count: 2
     dashboard:
@@ -39,7 +39,6 @@ rook-ceph-cluster:
       spec:
         replicated:
           size: 2
-          requireSafeReplicaSize: false
       storageClass:
         enabled: true
         name: standard-rwo
@@ -68,7 +67,7 @@ rook-ceph-cluster:
               size: 2
         metadataServer:
           activeCount: 1
-          activeStandby: false
+          activeStandby: true
           resources:
             limits:
               memory: "4Gi"
