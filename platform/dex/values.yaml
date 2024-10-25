@@ -34,6 +34,11 @@ dex:
         redirectURIs:
           - 'https://git.champion.casa/user/oauth2/Dex/callback'
         secretEnv: GITEA_CLIENT_SECRET
+      - id: cloudflare
+        name: Cloudflare
+        redirectURIs:
+          - 'https://aschampion.cloudflareaccess.com/cdn-cgi/access/callback'
+        secretEnv: CLOUDFLARE_CLIENT_SECRET
   envFrom:
     - secretRef:
         name: dex-secrets
@@ -42,6 +47,8 @@ dex:
     className: nginx
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
+      external-dns.alpha.kubernetes.io/target: homelab-tunnel.champion.casa
+      external-dns.alpha.kubernetes.io/cloudflare-proxied: 'true'
     hosts:
       - host: &host dex.champion.casa
         paths:

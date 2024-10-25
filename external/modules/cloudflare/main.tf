@@ -103,3 +103,40 @@ resource "kubernetes_secret" "cert_manager_token" {
     "api-token" = cloudflare_api_token.cert_manager.value
   }
 }
+
+# Dex to Cloudflare Zero Trust OIDC
+
+resource "random_password" "cloudflare_client_secret" {
+  length  = 34
+  special = false
+}
+
+resource "kubernetes_secret" "dex_cloudflare_client_secret" {
+  metadata {
+    name      = "dex.cloudflare"
+    namespace = "global-secrets"
+
+    annotations = {
+      "app.kubernetes.io/managed-by" = "Terraform"
+    }
+  }
+
+  data = {
+    "client_secret": base64encode(random_password.cloudflare_client_secret.result)
+  }
+}
+
+resource "cloudflare_zero_trust_access_identity_provider" "dex_oidc" {
+  account_id = var.cloudflare_account_id
+  name       = "Homelab0 Dex"
+  type       = "oidc"
+
+  config {
+    client_id       = "cloudflare"
+    client_secret   = random_password.cloudflare_client_secret.result
+    auth_url        = "https://dex.champion.casa/auth"
+    token_url       = "https://dex.champion.casa/token"
+    certs_url       = "https://dex.champion.casa/keys"
+    scopes          = ["openid", "email", "profile"]
+  }
+}
