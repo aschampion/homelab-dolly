@@ -1,6 +1,7 @@
 rook-ceph:
   monitoring:
     enabled: true
+  enableDiscoveryDaemon: true
 rook-ceph-cluster:
   monitoring:
     enabled: true
@@ -10,6 +11,9 @@ rook-ceph-cluster:
       count: 3
     mgr:
       count: 2
+      modules:
+      - name: rook
+        enabled: true
     dashboard:
       ssl: false
     logCollector:
